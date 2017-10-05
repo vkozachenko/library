@@ -1,0 +1,11 @@
+- provide(:title, 'Books')
+h1 Books
+
+= link_to "New book", "books/new" if signed_in?
+
+= will_paginate
+
+ul.books
+  - @books.each do |book|
+    = render partial: 'shared/book', locals: { book: book }
+= will_paginate

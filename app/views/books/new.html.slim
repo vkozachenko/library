@@ -1,0 +1,32 @@
+- provide(:title, 'Add book')
+h1 Add book
+
+.row
+  .span6.offset3
+    = form_for(@book) do |f|
+        = render 'shared/error_messages', object: f.object
+
+        = f.label :name
+        = f.text_field :name
+
+        = f.label :description
+        = f.text_area :description
+
+
+        p Categories:
+        #groups-div
+        = select_tag "groups", options_from_collection_for_select(@groups, "id", "name"), prompt: "Add category", onchange: "updateGroups(this, authors_ids.value)"
+        = hidden_field_tag "groups_ids", ' '
+
+        p Authors:
+        #authors-div
+        = select_tag "authors", options_from_collection_for_select(@authors, "id", "name"), prompt: "Add author", onchange: "updateAuthors(this, authors_ids.value)"
+        = hidden_field_tag "authors_ids", ' '
+
+        =f.file_field :cover
+        br
+        p
+          ' Draft
+          = f.check_box :draft
+
+        = f.submit "Add book", class: "btn btn-large btn-primary"

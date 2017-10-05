@@ -1,0 +1,5 @@
+- provide(:title, @user.name)
+h1 = @user.name
+ul.books
+  - @books.each do |book|
+    = render partial: 'shared/book', locals: { book: book }

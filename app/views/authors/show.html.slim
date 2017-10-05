@@ -1,0 +1,14 @@
+- provide(:title, @author.name)
+.row
+  aside.span4
+    section
+      h1 = @author.name
+      = @author.description
+  .span8
+    - if @author.books.any?
+        h3
+          ' Books:
+          = @author.books.count
+        ol.books
+          - @author.books.each do |book|
+            = render partial: 'shared/book', locals: { book: book }

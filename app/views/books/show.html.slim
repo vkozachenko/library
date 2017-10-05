@@ -1,0 +1,15 @@
+- provide(:title, @book.name)
+.row
+  aside.span4
+    section
+      h1
+        = @book.name
+        ' |
+        = link_to "Edit", edit_book_path(@book) if signed_in? && @book.user = current_user
+      = @book.description
+  .span
+    - if @book.authors.any?
+        h3
+          ' Authors:
+          = @book.get_authors
+    = image_tag @book.cover.url(:medium)

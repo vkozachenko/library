@@ -1,0 +1,13 @@
+- provide(:title, @group.name)
+.row
+  aside.span4
+    section
+      h1 = @group.name
+      = @group.description
+  .span8
+    - if @group.books.any?
+        h3 = "Books (#{@group.books.count})"
+        ol.books
+          - @group.books.each do |book|
+            = render partial: 'shared/book', locals: { book: book }
+        = will_paginate @books
