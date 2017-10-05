@@ -58,4 +58,8 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless current_user?(@user)
   end
 
+  def not_signed_in_user
+    redirect_to root_path if signed_in?
+  end
+
 end
