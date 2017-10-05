@@ -1,0 +1,3 @@
+li
+  = link_to image_tag(book.cover.url(:thumb)), book
+  = link_to(book.name, book) + ' | ' + book.get_authors
