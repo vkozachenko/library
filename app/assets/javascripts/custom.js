@@ -2,7 +2,7 @@ function updateAuthors(author, ids){
     var authorName = author.options[author.selectedIndex].text;
     var authorId = author.options[author.selectedIndex].value;
     var o="removeAuthor('"+authorId+"','"+authorName+"')";
-    var a='<img src=\'../../assets/delete.png\' width="12" height="12" onclick="'+o+'">';
+    var a='<img src=\'http://icongal.com/gallery/image/39976/delete_error_notification_remove.png\' width="12" height="12" onclick="'+o+'">';
     $("#authors-div").append("<div id='"+authorId+"'><a href='../authors/"+authorId+"'>"+authorName+"</a> "+a+"</div>");
     $("#authors_ids").val(ids+authorId+",");
     $("#authors option[value='"+authorId+"']").remove();
@@ -21,7 +21,7 @@ function updateGroups(group, ids){
     var groupName = group.options[group.selectedIndex].text;
     var groupId = group.options[group.selectedIndex].value;
     var o="removeGroup('"+groupId+"','"+groupName+"')";
-    var a='<img src=\'../../assets/delete.png\' width="12" height="12" onclick="'+o+'">';
+    var a='<img src=\'http://icongal.com/gallery/image/39976/delete_error_notification_remove.png\' width="12" height="12" onclick="'+o+'">';
     $("#groups-div").append("<div id='"+groupId+"'><a href='../groups/"+groupId+"'>"+groupName+"</a> "+a+"</div>");
     $("#groups_ids").val(ids+groupId+",");
     $("#groups option[value='"+groupId+"']").remove();
