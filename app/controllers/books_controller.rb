@@ -33,9 +33,12 @@ class BooksController < ApplicationController
         flash[:success] = "Book was successfully created"
         redirect_to @book
       else
+        new
+        flash.now[:error] = 'Fill required filds'
         render 'new'
       end
     else
+      new
       flash.now[:error] = "Choose at least one author"
       render 'new'
     end
