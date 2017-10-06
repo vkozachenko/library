@@ -15,31 +15,31 @@ class BooksController < ApplicationController
   end
 
   def create
+    @book = Book.new(book_params)
+    @book.user = current_user
+
     unless params[:authors_ids].blank?
-      @book = Book.new(book_params)
-      @book.user = current_user
       authors_ids = params[:authors_ids].split(',') || []
       authors_ids.each do |id|
         @book.authors << Author.find(id)
       end
-      unless params[:groups_ids].blank?
-        groups_ids = params[:groups_ids].split(',') || []
-        groups_ids.each do |id|
-          @book.groups << Group.find(id)
-        end
-      end
+    end
 
-      if @book.save
-        flash[:success] = "Book was successfully created"
-        redirect_to @book
-      else
-        new
-        flash.now[:error] = 'Fill required filds'
-        render 'new'
+    unless params[:groups_ids].blank?
+      groups_ids = params[:groups_ids].split(',') || []
+      groups_ids.each do |id|
+        @book.groups << Group.find(id)
       end
+    end
+
+    if @book.save
+      flash[:success] = "Book was successfully created"
+      redirect_to @book
     else
-      new
-      flash.now[:error] = "Choose at least one author"
+      # new
+      @authors  = Author.all
+      @groups   = Group.all
+      # flash.now[:error] = 'Fill required filds'
       render 'new'
     end
   end
